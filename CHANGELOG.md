@@ -2,6 +2,15 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.1.0] — 2026-11-16
+
+### Adicionado
+- Seção **Clientes** em estilo editorial: palavra gigante "CLIENTES" com rótulos coloridos de cada cliente; ao passar o mouse, a tela assume a cor do cliente; ao clicar, abre o vídeo do cliente.
+- Clientes: Balneário São Francisco, Chefe do Açaí, Espetinho Paulista, Sunset Cactus Resort e Sbarra Aki.
+- Animações ilustrativas (SVG) para cada cliente, substituíveis por vídeos reais em `config/clients.ts`.
+- Fonte condensada Anton (OFL), auto-hospedada.
+- Item "Clientes" no menu.
+
 ## [1.0.0] — 2026-11-16
 
 ### Adicionado

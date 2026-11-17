@@ -78,6 +78,15 @@ git push origin main --follow-tags
 
 Para voltar a uma versão anterior na Vercel: **Deployments → … → Promote to Production** no deploy desejado.
 
+## Seção Clientes
+
+Os clientes ficam em `config/clients.ts` (nome, segmento, cor, frase e posição do rótulo). Para trocar a animação por um **vídeo real**:
+
+1. Salve o vídeo em `public/videos/clientes/` (MP4 H.264, 10–15 s, sem áudio, até ~3 MB; ex.: `balneario.mp4`).
+2. No cliente correspondente, adicione `video: { src: "/videos/clientes/balneario.mp4" }`.
+
+Para adicionar um cliente, copie um bloco existente e ajuste nome, cor e `position` (posição do rótulo sobre a palavra).
+
 ## Pendências de conteúdo
 
 - [ ] Número de WhatsApp comercial
@@ -86,4 +95,6 @@ Para voltar a uma versão anterior na Vercel: **Deployments → … → Promote 
 - [ ] Domínio definitivo
 - [ ] Fotografias reais (opcional): os segmentos usam cenas ilustradas; fotos profissionais podem ser adicionadas em `public/images/segments/`
 - [ ] Logomarca em versão para fundo claro, se houver (o site usa apenas fundos escuros para a logo)
+- [ ] Vídeos reais dos clientes (seção Clientes)
+- [ ] Logos/cores oficiais dos clientes, se quiser refletir a identidade de cada um
 - [ ] CNPJ e endereço, se quiser exibi-los no rodapé

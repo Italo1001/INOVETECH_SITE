@@ -58,6 +58,7 @@ export const siteConfig = {
 export const navItems = [
   { label: "Início", href: "#inicio" },
   { label: "Soluções", href: "#solucoes" },
+  { label: "Clientes", href: "#clientes" },
   { label: "Diferenciais", href: "#diferenciais" },
   { label: "Sobre Nós", href: "#sobre" },
   { label: "Contato", href: "#contato" },

@@ -1,8 +1,18 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
+import localFont from "next/font/local";
 import { siteConfig } from "@/config/site";
 import { MotionEffects } from "@/components/ui/motion-effects";
 import "./globals.css";
+
+/** Fonte condensada da seção Clientes (OFL, auto-hospedada, sem preload para não competir com o LCP). */
+const anton = localFont({
+  src: "./fonts/anton-latin.woff2",
+  variable: "--font-anton",
+  display: "swap",
+  preload: false,
+  fallback: ["Arial Narrow", "Impact", "sans-serif"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -66,7 +76,7 @@ const organizationJsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className={`${GeistSans.variable} antialiased`}>
+    <html lang="pt-BR" suppressHydrationWarning className={`${GeistSans.variable} ${anton.variable} antialiased`}>
       <head>
         {/* Ativa as animações de entrada antes da primeira pintura (evita "piscar"). */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
