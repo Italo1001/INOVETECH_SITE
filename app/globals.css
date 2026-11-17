@@ -397,6 +397,91 @@ body {
 
 }
 
+/* ---------- Clientes: cenas animadas ---------- */
+.sc-sink { animation: sc-sink 9s ease-in-out infinite alternate; }
+@keyframes sc-sink { to { transform: translateY(14px); } }
+.sc-shimmer { animation: sc-shimmer 2.2s ease-in-out infinite; }
+@keyframes sc-shimmer { 50% { opacity: 0.45; } }
+.sc-waves { animation: sc-waves 6s linear infinite; }
+@keyframes sc-waves { to { transform: translateX(40px); } }
+.sc-drift { animation: sc-drift 18s linear infinite; }
+@keyframes sc-drift { from { transform: translateX(-260px); } to { transform: translateX(560px); } }
+.sc-bob { transform-box: fill-box; transform-origin: center; animation: sc-bob 2.6s ease-in-out infinite; }
+@keyframes sc-bob { 50% { transform: translateY(4px) rotate(-1.5deg); } }
+.sc-sway { animation: sc-sway 5s ease-in-out infinite; }
+@keyframes sc-sway { 50% { transform: rotate(2.5deg); } }
+.sc-twinkle { animation: sc-twinkle 1.8s ease-in-out infinite; }
+@keyframes sc-twinkle { 50% { opacity: 0.25; } }
+.sc-fly { animation: sc-fly 14s linear infinite; }
+@keyframes sc-fly { from { transform: translate(120px, 10px); } to { transform: translate(-620px, -20px); } }
+.sc-spin-slow { animation: sc-spin 40s linear infinite; }
+.client-scene .sc-spin-slow { transform-box: fill-box; transform-origin: center; }
+@keyframes sc-spin { to { transform: rotate(360deg); } }
+.sc-float { animation: sc-float 4s ease-in-out infinite; }
+@keyframes sc-float { 50% { transform: translateY(-6px); } }
+.sc-drop { animation: sc-drop 4.5s cubic-bezier(0.3, 1.4, 0.5, 1) infinite both; }
+@keyframes sc-drop {
+  0% { transform: translateY(-260px); opacity: 0; }
+  12% { opacity: 1; }
+  30%, 88% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+.sc-draw { stroke-dasharray: 260; animation: sc-draw 4.5s ease-in-out infinite; }
+@keyframes sc-draw {
+  0%, 30% { stroke-dashoffset: 260; opacity: 1; }
+  60%, 88% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.sc-smoke { transform-box: fill-box; transform-origin: bottom; animation: sc-smoke 3.6s ease-out infinite; }
+@keyframes sc-smoke {
+  0% { transform: translateY(20px) scaleX(0.6); opacity: 0; }
+  30% { opacity: 0.35; }
+  100% { transform: translateY(-60px) scaleX(1.4); opacity: 0; }
+}
+.sc-steam { animation: sc-steam 2.8s ease-out infinite; }
+@keyframes sc-steam {
+  0% { transform: translateY(8px); opacity: 0; }
+  40% { opacity: 0.7; }
+  100% { transform: translateY(-26px); opacity: 0; }
+}
+.sc-ember { animation: sc-ember 1.6s ease-in-out infinite; }
+@keyframes sc-ember { 50% { opacity: 0.55; } }
+.sc-flame { animation: sc-flame 0.9s ease-in-out infinite alternate; }
+@keyframes sc-flame {
+  from { transform: scaleY(0.75) skewX(-4deg); opacity: 0.7; }
+  to { transform: scaleY(1.1) skewX(4deg); opacity: 1; }
+}
+.sc-turn { animation: sc-turn 3s ease-in-out infinite; }
+@keyframes sc-turn { 50% { transform: translateY(-3px) rotate(-1deg); } }
+.sc-glow { animation: sc-shimmer 1.4s ease-in-out infinite; }
+.sc-lift { animation: sc-lift 4s ease-in-out infinite; }
+@keyframes sc-lift {
+  0%, 15% { transform: translate(0, 0) rotate(0); }
+  55%, 80% { transform: translate(28px, -46px) rotate(-8deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+.sc-stretch { animation: sc-stretch 4s ease-in-out infinite; }
+@keyframes sc-stretch {
+  0%, 15% { transform: scaleY(0.2); opacity: 0; }
+  55%, 80% { transform: scaleY(1.6); opacity: 1; }
+  100% { transform: scaleY(0.2); opacity: 0; }
+}
+
+/* ---------- Clientes: rótulos ---------- */
+.font-display-condensed {
+  font-family: var(--font-anton), "Arial Narrow", Impact, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.client-tag-float {
+  animation: tag-float 6s ease-in-out infinite;
+  animation-delay: var(--fd, 0s);
+}
+@keyframes tag-float {
+  50% { translate: 0 -8px; }
+}
+
 /* ---------- Movimento reduzido ---------- */
 @media (prefers-reduced-motion: reduce) {
   *,

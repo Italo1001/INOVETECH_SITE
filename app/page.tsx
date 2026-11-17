@@ -2,6 +2,7 @@ import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { Solutions } from "@/components/sections/solutions";
 import { Segments } from "@/components/sections/segments";
+import { Clients } from "@/components/sections/clients";
 import { Differentials } from "@/components/sections/differentials";
 import { About } from "@/components/sections/about";
 import { CallToAction } from "@/components/sections/cta";
@@ -18,6 +19,7 @@ export default function Home() {
         <Hero whatsappHref={whatsappHref} />
         <Solutions />
         <Segments />
+        <Clients />
         <Differentials />
         <About />
         <CallToAction whatsappHref={whatsappHref} configured={hasWhatsApp} />
