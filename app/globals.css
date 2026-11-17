@@ -1,0 +1,418 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-deep: #07182f;
+  --color-brand-blue: #102b52;
+  --color-brand-navy: #0b2242;
+  --color-brand-orange: #ff7900;
+  --color-brand-orange-dark: #b34f00;
+  --color-brand-gray: #f4f6f9;
+  --color-ink: #0c1b30;
+  --color-muted: #5b6b82;
+  --color-mist: #a9b6ca;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: #fff;
+  color: var(--color-ink);
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand-orange);
+  color: var(--color-brand-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand-orange);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@layer components {
+/* ---------- Tipografia fluida ---------- */
+.text-display {
+  font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 650;
+  text-wrap: balance;
+}
+.text-h2 {
+  font-size: clamp(1.875rem, 1.3rem + 2.3vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 650;
+  text-wrap: balance;
+}
+.text-lead {
+  font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.container-site {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: max(1.25rem, env(safe-area-inset-left));
+  padding-right: max(1.25rem, env(safe-area-inset-right));
+}
+@media (min-width: 768px) {
+  .container-site {
+    padding-inline: 2rem;
+  }
+}
+
+/* ---------- Botões ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.975rem;
+  line-height: 1;
+  transition:
+    transform 0.25s var(--ease-out-expo),
+    box-shadow 0.25s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+.btn-primary {
+  background: var(--color-brand-orange);
+  color: var(--color-brand-deep);
+  box-shadow:
+    0 10px 30px -10px rgb(255 121 0 / 0.65),
+    inset 0 1px 0 rgb(255 255 255 / 0.35);
+}
+.btn-primary:hover {
+  background: #ff8a1f;
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 40px -12px rgb(255 121 0 / 0.75),
+    inset 0 1px 0 rgb(255 255 255 / 0.35);
+}
+.btn-ghost {
+  color: #fff;
+  border: 1px solid rgb(255 255 255 / 0.22);
+  background: rgb(255 255 255 / 0.04);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover {
+  border-color: rgb(255 255 255 / 0.5);
+  background: rgb(255 255 255 / 0.09);
+  transform: translateY(-2px);
+}
+.btn .btn-icon {
+  transition: transform 0.25s var(--ease-out-expo);
+}
+.btn:hover .btn-icon {
+  transform: translateX(3px);
+}
+
+/* ---------- Reveal (entrada ao rolar) ----------
+   Só esconde quando o JS está ativo (classe .js aplicada antes da pintura). */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--delay, 0ms);
+}
+.js [data-reveal].is-visible,
+.reduced-motion [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Entrada do hero só com CSS (não depende de JS e não atrasa o LCP:
+   o título nunca fica invisível, apenas desliza) */
+.hero-in {
+  animation: hero-in 1s var(--ease-out-expo) both;
+  animation-delay: var(--delay, 0ms);
+}
+.hero-rise {
+  animation: hero-rise 1s var(--ease-out-expo) both;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+}
+@keyframes hero-rise {
+  from {
+    transform: translate3d(0, 18px, 0);
+  }
+}
+
+/* ---------- Parallax ---------- */
+[data-parallax] {
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
+}
+
+/* ---------- Tilt 3D ---------- */
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  --ga: 0;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease-out-expo), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+.tilt.is-tilting {
+  transition: transform 0.08s linear, box-shadow 0.4s ease, border-color 0.3s ease;
+}
+.tilt-glare {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: var(--ga);
+  background: radial-gradient(
+    420px circle at var(--gx) var(--gy),
+    rgb(255 255 255 / 0.55),
+    transparent 45%
+  );
+  mix-blend-mode: soft-light;
+  transition: opacity 0.4s ease;
+}
+.tilt-pop {
+  transform: translateZ(40px);
+}
+
+/* ---------- Hero ---------- */
+.hero-bg {
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, rgb(255 121 0 / 0.16), transparent 60%),
+    radial-gradient(50rem 40rem at -10% 20%, rgb(40 110 210 / 0.22), transparent 60%),
+    linear-gradient(180deg, #07182f 0%, #0a2140 55%, #07182f 100%);
+}
+
+.grid-floor {
+  position: absolute;
+  inset: auto -50% -10% -50%;
+  height: 70%;
+  transform: perspective(600px) rotateX(68deg);
+  transform-origin: 50% 100%;
+  background-image:
+    linear-gradient(rgb(120 170 255 / 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(120 170 255 / 0.18) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to top, #000 10%, transparent 80%);
+  animation: grid-move 9s linear infinite;
+}
+@keyframes grid-move {
+  to {
+    background-position: 0 56px;
+  }
+}
+
+/* Palco 3D */
+.stage {
+  --mx: 0;
+  --my: 0;
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+}
+.stage-inner {
+  transform-style: preserve-3d;
+  transform: rotateX(calc(10deg + var(--my) * -7deg)) rotateY(calc(-18deg + var(--mx) * 12deg))
+    rotateZ(1deg);
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.stage .layer {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: translateZ(var(--z, 0px));
+}
+.float {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: var(--fd, 0s);
+}
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+.glass {
+  background: linear-gradient(160deg, rgb(30 62 108 / 0.94), rgb(14 36 68 / 0.94));
+  border: 1px solid rgb(255 255 255 / 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 30px 60px -20px rgb(0 0 0 / 0.55),
+    inset 0 1px 0 rgb(255 255 255 / 0.15);
+}
+
+.led {
+  animation: blink 2.4s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.scan {
+  animation: scan 3.2s linear infinite;
+}
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(300%);
+  }
+}
+.chart-line {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw 2.4s 0.6s var(--ease-out-expo) forwards;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------- Pilha isométrica (Sobre) ---------- */
+.iso {
+  --p: 0;
+  perspective: 1600px;
+}
+.iso-stack {
+  transform-style: preserve-3d;
+  transform: rotateX(58deg) rotateZ(-42deg);
+}
+.iso-plate {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(calc(var(--i) * (34px + var(--p) * 36px)));
+  transition: transform 0.2s linear;
+}
+
+/* ---------- Header ---------- */
+.header-bar {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    padding 0.35s ease;
+}
+.header-bar.is-scrolled {
+  background: rgb(7 24 47 / 0.92);
+  border-color: rgb(255 255 255 / 0.08);
+  backdrop-filter: saturate(160%) blur(16px);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
+  box-shadow: 0 10px 30px -15px rgb(0 0 0 / 0.5);
+}
+
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.35rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-brand-orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+}
+
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .chart-line {
+    stroke-dashoffset: 0;
+  }
+  [data-parallax] {
+    transform: none !important;
+  }
+  .stage-inner {
+    transform: rotateX(10deg) rotateY(-18deg) rotateZ(1deg) !important;
+  }
+}
