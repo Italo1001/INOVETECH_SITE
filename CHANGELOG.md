@@ -2,6 +2,15 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.2.0] — 2026-11-18
+
+### Adicionado
+- Vídeo real do **Chef do Açaí** na seção Clientes: edição com os melhores trechos do espaço e do sistema de gestão no caixa, correção de cor (HDR → SDR), estabilização, legendas e cartela final Inovetech.
+- Player vertical (9:16) para vídeos gravados no celular.
+
+### Alterado
+- Nome do cliente corrigido para "Chef do Açaí", como na fachada.
+
 ## [1.1.0] — 2026-11-16
 
 ### Adicionado

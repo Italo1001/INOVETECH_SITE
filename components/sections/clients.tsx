@@ -183,7 +183,15 @@ export function Clients() {
               </div>
 
               <div>
-              <div className="client-scene relative aspect-video w-full overflow-hidden rounded-3xl bg-[#050b16] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] ring-4 ring-[#050b16]">
+              <div
+                className={current.video?.orientation === "portrait" ? "mx-auto w-full" : "w-full"}
+                style={current.video?.orientation === "portrait" ? { maxWidth: "min(100%, calc(78dvh * 0.5625))" } : undefined}
+              >
+              <div
+                className={`client-scene relative w-full overflow-hidden rounded-3xl bg-[#050b16] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] ring-4 ring-[#050b16] ${
+                  current.video?.orientation === "portrait" ? "aspect-[9/16]" : "aspect-video"
+                }`}
+              >
                 {current.video ? (
                   <video
                     key={current.video.src}
@@ -194,31 +202,33 @@ export function Clients() {
                     muted
                     loop
                     playsInline
-                    preload="metadata"
-                    aria-label={`Vídeo do cliente ${current.name}`}
+                    preload="auto"
+                    aria-label={`Vídeo do cliente ${current.name}, gravado no estabelecimento`}
                   />
                 ) : (
-                  <div key={current.slug} className="h-full w-full" role="img" aria-label={`Animação ilustrativa: ${current.name} — ${current.segment}`}>
-                    <ClientSceneView scene={current.scene} />
-                  </div>
+                  <>
+                    <div key={current.slug} className="h-full w-full" role="img" aria-label={`Animação ilustrativa: ${current.name} — ${current.segment}`}>
+                      <ClientSceneView scene={current.scene} />
+                    </div>
+                    <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur sm:left-6 sm:top-6 sm:text-sm">
+                      <span className="size-2 animate-pulse rounded-full bg-red-500" />
+                      {current.name}
+                    </div>
+                    <div className="pointer-events-none absolute bottom-4 right-4 hidden items-center gap-2 rounded-2xl border border-white/15 bg-[#0d2343]/90 px-3 py-2 text-xs text-white shadow-lg sm:bottom-6 sm:right-6 sm:flex sm:text-sm">
+                      <span className="flex size-6 items-center justify-center rounded-full bg-emerald-400 text-[#050b16]">
+                        <Play aria-hidden="true" className="size-3 fill-current" />
+                      </span>
+                      <span>
+                        <span className="block text-[0.65rem] uppercase tracking-wider text-white/60">Inovetech • Gestão</span>
+                        {current.status}
+                      </span>
+                    </div>
+                  </>
                 )}
-
-                <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur sm:left-6 sm:top-6 sm:text-sm">
-                  <span className="size-2 animate-pulse rounded-full bg-red-500" />
-                  {current.name}
-                </div>
-                <div className="pointer-events-none absolute bottom-4 right-4 hidden items-center sm:flex gap-2 rounded-2xl border border-white/15 bg-[#0d2343]/90 px-3 py-2 text-xs text-white shadow-lg sm:bottom-6 sm:right-6 sm:text-sm">
-                  <span className="flex size-6 items-center justify-center rounded-full bg-emerald-400 text-[#050b16]">
-                    <Play aria-hidden="true" className="size-3 fill-current" />
-                  </span>
-                  <span>
-                    <span className="block text-[0.65rem] uppercase tracking-wider text-white/60">Inovetech • Gestão</span>
-                    {current.status}
-                  </span>
-                </div>
               </div>
-              <p className="mt-3 text-xs opacity-70">
-                {current.video ? "Vídeo do cliente." : "Animação ilustrativa. Em breve, vídeo gravado no local."}
+              </div>
+              <p className={`mt-3 text-xs opacity-70 ${current.video?.orientation === "portrait" ? "text-center" : ""}`}>
+                {current.video ? "Vídeo gravado no estabelecimento." : "Animação ilustrativa. Em breve, vídeo gravado no local."}
               </p>
               </div>
             </div>

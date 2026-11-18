@@ -20,7 +20,7 @@ export type Client = {
   scene: ClientScene;
   /** Posição do rótulo sobre a palavra gigante (desktop), em % */
   position: { top: string; left: string; rotate: number };
-  video?: { src: string; poster?: string };
+  video?: { src: string; poster?: string; orientation?: "portrait" | "landscape" };
 };
 
 export const clients: Client[] = [
@@ -36,14 +36,19 @@ export const clients: Client[] = [
     position: { top: "54%", left: "4%", rotate: -7 },
   },
   {
-    slug: "chefe-do-acai",
-    name: "Chefe do Açaí",
+    slug: "chef-do-acai",
+    name: "Chef do Açaí",
     segment: "Açaiteria",
     color: "#B26BFF",
     headline: "Açaí no ponto, atendimento no ritmo",
     status: "Pedido pronto para retirada",
     scene: "acai",
     position: { top: "18%", left: "24%", rotate: 5 },
+    video: {
+      src: "/videos/clientes/chef-do-acai.mp4",
+      poster: "/videos/clientes/chef-do-acai-poster.webp",
+      orientation: "portrait",
+    },
   },
   {
     slug: "espetinho-paulista",
