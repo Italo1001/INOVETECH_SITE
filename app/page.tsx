@@ -19,10 +19,10 @@ export default function Home() {
         <Hero whatsappHref={whatsappHref} />
         <Solutions />
         <Segments />
-        <Clients />
         <Differentials />
         <About />
         <CallToAction whatsappHref={whatsappHref} configured={hasWhatsApp} />
+        <Clients />
       </main>
       <Footer whatsappHref={whatsappHref} hasWhatsApp={hasWhatsApp} />
     </>
