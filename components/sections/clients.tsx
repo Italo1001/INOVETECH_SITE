@@ -199,7 +199,7 @@ export function Clients() {
                     src={current.video.src}
                     poster={current.video.poster}
                     autoPlay
-                    muted
+                   // muted
                     loop
                     playsInline
                     preload="auto"
