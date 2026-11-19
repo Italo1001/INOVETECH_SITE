@@ -4,14 +4,17 @@ const isDev = process.env.NODE_ENV !== "production";
 
 /**
  * Content Security Policy estática (sem nonce) para manter a página 100% estática
- * e servida pela CDN — o que garante a máxima velocidade. O site não carrega
+ * e compatível com cache na CDN. O site não carrega
  * scripts, fontes ou imagens de terceiros, então tudo fica restrito a 'self'.
+ * Risco residual: 'unsafe-inline' permite scripts inline; esta CSP não é estrita.
+ * Migrar para nonces exige renderização dinâmica e revisão de cache/PPR.
  * 'unsafe-inline' em script-src é necessário para os scripts inline do Next.js
  * em páginas estáticas (ver docs: content-security-policy "Without Nonces").
  */
 const csp = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
@@ -39,7 +42,7 @@ const securityHeaders = [
       "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), browsing-topics=(), interest-cohort=()",
   },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-  { key: "X-DNS-Prefetch-Control", value: "on" },
+  { key: "X-DNS-Prefetch-Control", value: "off" },
   { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
 ];
 

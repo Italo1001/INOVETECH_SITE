@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import localFont from "next/font/local";
 import { siteConfig } from "@/config/site";
-import { MotionEffects } from "@/components/ui/motion-effects";
 import "./globals.css";
 
 /** Fonte condensada da seção Clientes (OFL, auto-hospedada, sem preload para não competir com o LCP). */
@@ -89,7 +88,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Pular para o conteúdo
         </a>
         {children}
-        <MotionEffects />
         <script
           type="application/ld+json"
           // JSON gerado no servidor a partir de dados estáticos; "<" é escapado.

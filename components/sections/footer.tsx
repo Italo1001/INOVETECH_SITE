@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
@@ -42,6 +43,9 @@ export async function Footer({ whatsappHref, hasWhatsApp }: { whatsappHref: stri
             Sistemas de gestão, automação comercial, suporte técnico, redes e segurança eletrônica para empresas que
             querem operar com mais eficiência.
           </p>
+          {siteConfig.business.legalName ? <p className="mt-4 text-sm text-white/65">{siteConfig.business.legalName}</p> : null}
+          {siteConfig.business.cnpj ? <p className="mt-1 text-sm text-white/65">CNPJ: {siteConfig.business.cnpj}</p> : null}
+          {siteConfig.business.address ? <p className="mt-1 text-sm text-white/65">{siteConfig.business.address}</p> : null}
           {socials.length > 0 ? (
             <ul className="mt-6 flex gap-2" aria-label="Redes sociais">
               {socials.map(([key, url]) => (
@@ -127,7 +131,10 @@ export async function Footer({ whatsappHref, hasWhatsApp }: { whatsappHref: stri
         <p>
           © {year} {siteConfig.name}. Todos os direitos reservados.
         </p>
-        <p>{siteConfig.tagline}</p>
+        <nav aria-label="Informações legais" className="flex flex-wrap gap-x-5 gap-y-3">
+          <Link href="/privacidade" className="py-1 underline underline-offset-4 hover:text-white">Privacidade e cookies</Link>
+          <Link href="/termos" className="py-1 underline underline-offset-4 hover:text-white">Condições de uso</Link>
+        </nav>
       </div>
     </footer>
   );
