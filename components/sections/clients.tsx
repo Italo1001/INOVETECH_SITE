@@ -56,8 +56,8 @@ export function Clients() {
   return (
     <section
       id="clientes"
-      aria-labelledby="clientes-title"
-      className="relative isolate overflow-hidden bg-[#050b16] text-white"
+      aria-labelledby="clientes-title"//mudar cor de fund aqui
+      className="relative isolate overflow-hidden bg-[#051224] text-white"
     >
       {/* Fundo colorido ao passar o mouse (desktop) */}
       <div
