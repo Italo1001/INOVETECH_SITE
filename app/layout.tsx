@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import localFont from "next/font/local";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 /** Fonte condensada da seção Clientes (OFL, auto-hospedada, sem preload para não competir com o LCP). */
 const anton = localFont({
@@ -95,7 +96,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
           }}
         />
-      </body>
+          <Analytics />
+        </body>
     </html>
   );
 }
