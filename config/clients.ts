@@ -45,7 +45,7 @@ export const clients: Client[] = [
     scene: "acai",
     position: { top: "18%", left: "24%", rotate: 5 },
     video: {
-      src: "/videos/clientes/chef-do-acai.mp4",
+      src: "/videos/clientes/chef-do-acai-com-trilha.mp4",
       poster: "/videos/clientes/chef-do-acai-poster.webp",
       orientation: "portrait",
     },
