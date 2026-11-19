@@ -1,3 +1,4 @@
+import { MotionEffects } from "@/components/ui/motion-effects";
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { Solutions } from "@/components/sections/solutions";
@@ -25,6 +26,7 @@ export default function Home() {
         <Clients />
       </main>
       <Footer whatsappHref={whatsappHref} hasWhatsApp={hasWhatsApp} />
+      <MotionEffects />
     </>
   );
 }

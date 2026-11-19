@@ -97,4 +97,27 @@ Para adicionar um cliente, copie um bloco existente e ajuste nome, cor e `positi
 - [ ] Logomarca em versão para fundo claro, se houver (o site usa apenas fundos escuros para a logo)
 - [ ] Vídeos reais dos clientes (seção Clientes)
 - [ ] Logos/cores oficiais dos clientes, se quiser refletir a identidade de cada um
-- [ ] CNPJ e endereço, se quiser exibi-los no rodapé
+- [ ] Razão social, CNPJ, endereço e canal de privacidade reais; verificar as obrigações de identificação aplicáveis às ofertas comerciais
+
+## Segurança e privacidade
+
+As páginas `/privacidade` e `/termos` descrevem o site institucional atual. Antes de
+publicar, a empresa precisa conferir dados, fornecedores, retenção, bases legais e
+autorizações conforme [o plano de adequação](docs/compliance-plan.md). Não são uma
+certificação jurídica. Preencha as novas variáveis empresariais de `.env.example`
+na Vercel; nunca utilize `NEXT_PUBLIC_*` para segredos.
+
+```bash
+npm test
+npm run security:check -- http://127.0.0.1:3000
+# Verificação somente de leitura da publicação atual:
+npm run security:check -- https://inovetech-site.vercel.app
+```
+
+O servidor precisa estar em execução (`npm run build` e `npm start`). O modo
+`--baseline` verifica as proteções existentes sem exigir as novas páginas/cabeçalhos.
+Veja [a avaliação inicial e suas limitações](docs/security-review.md).
+
+Arquivos dentro de `public/` e arquivos de um repositório público são públicos.
+Não coloque downloads restritos nesses locais. A área privada futura exige projeto
+próprio de autenticação, autorização no servidor e armazenamento privado.

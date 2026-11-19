@@ -6,28 +6,9 @@
  * Enquanto um dado estiver vazio, o site oculta o item ou usa um fallback seguro.
  */
 
-function clean(value: string | undefined): string {
-  return (value ?? "").trim();
-}
+import { clean, safeHttpsUrl, safeEmail, safePhone } from "@/lib/public-config.mjs";
 
-/** Mantém apenas dígitos (formato exigido pelo wa.me, ex.: 5521999999999). */
-function digits(value: string | undefined): string {
-  return clean(value).replace(/\D/g, "");
-}
-
-/** Aceita apenas URLs https para evitar links inseguros ou javascript:. */
-function safeUrl(value: string | undefined): string {
-  const v = clean(value);
-  if (!v) return "";
-  try {
-    const url = new URL(v);
-    return url.protocol === "https:" ? url.toString() : "";
-  } catch {
-    return "";
-  }
-}
-
-const rawSiteUrl = safeUrl(process.env.NEXT_PUBLIC_SITE_URL);
+const rawSiteUrl = safeHttpsUrl(process.env.NEXT_PUBLIC_SITE_URL, true);
 
 export const siteConfig = {
   name: "Inovetech Soluções Tecnológicas",
@@ -41,17 +22,24 @@ export const siteConfig = {
 
   contact: {
     /** Número com DDI + DDD, apenas dígitos. Ex.: 5521999999999 */
-    whatsapp: digits(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER),
+    whatsapp: safePhone(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER),
     whatsappMessage:
       clean(process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE) ||
       "Olá, Inovetech! Vim pelo site e gostaria de falar com um especialista sobre soluções para a minha empresa.",
-    email: clean(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
+    email: safeEmail(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
+  },
+
+  business: {
+    legalName: clean(process.env.NEXT_PUBLIC_LEGAL_NAME),
+    cnpj: clean(process.env.NEXT_PUBLIC_CNPJ),
+    address: clean(process.env.NEXT_PUBLIC_BUSINESS_ADDRESS),
+    privacyEmail: safeEmail(process.env.NEXT_PUBLIC_PRIVACY_EMAIL),
   },
 
   social: {
-    instagram: safeUrl(process.env.NEXT_PUBLIC_INSTAGRAM_URL),
-    linkedin: safeUrl(process.env.NEXT_PUBLIC_LINKEDIN_URL),
-    facebook: safeUrl(process.env.NEXT_PUBLIC_FACEBOOK_URL),
+    instagram: safeHttpsUrl(process.env.NEXT_PUBLIC_INSTAGRAM_URL),
+    linkedin: safeHttpsUrl(process.env.NEXT_PUBLIC_LINKEDIN_URL),
+    facebook: safeHttpsUrl(process.env.NEXT_PUBLIC_FACEBOOK_URL),
   },
 } as const;
 

@@ -122,7 +122,7 @@ export function Clients() {
         </ul>
 
         <p className="mt-12 text-center text-sm font-semibold uppercase tracking-[0.18em] text-white/70 lg:absolute lg:inset-x-0 lg:bottom-12 lg:mt-0">
-          Clique em um cliente para assistir ao vídeo
+          Clique em um cliente para ver a apresentação
         </p>
       </div>
 
@@ -228,7 +228,7 @@ export function Clients() {
               </div>
               </div>
               <p className={`mt-3 text-xs opacity-70 ${current.video?.orientation === "portrait" ? "text-center" : ""}`}>
-                {current.video ? "Vídeo gravado no estabelecimento." : "Animação ilustrativa. Em breve, vídeo gravado no local."}
+                {current.video ? "Vídeo gravado no estabelecimento." : "Animação ilustrativa. Não representa uma operação real ou transmissão ao vivo."}
               </p>
               </div>
             </div>
@@ -258,7 +258,7 @@ function TagButton({ client, index, active, onEnter, onLeave, onOpen }: TagButto
       onBlur={onLeave}
       onClick={(e) => onOpen(index, e.currentTarget)}
       aria-haspopup="dialog"
-      aria-label={`${client.name} — ${client.segment}. Abrir vídeo`}
+      aria-label={`${client.name} — ${client.segment}. Abrir apresentação`}
       className="group relative inline-flex items-center"
       style={{ rotate: `${client.position.rotate}deg` }}
     >

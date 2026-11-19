@@ -19,6 +19,20 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm audit --omit=dev --audit-level=high
+      - run: npm test
       - run: npm run lint
       - run: npm run build
       - run: npm run typecheck
+      - name: Verificar segurança do servidor de produção
+        shell: bash
+        run: |
+          npm start -- --hostname 127.0.0.1 > /tmp/inovetech-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:3000/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          npm run security:check -- http://127.0.0.1:3000

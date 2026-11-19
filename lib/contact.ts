@@ -11,7 +11,7 @@ export function getWhatsAppHref(message: string = siteConfig.contact.whatsappMes
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
-export const hasWhatsApp = siteConfig.contact.whatsapp.length >= 10;
+export const hasWhatsApp = Boolean(siteConfig.contact.whatsapp);
 
 /** Atributos seguros para links externos. */
 export function externalLinkProps(href: string) {
