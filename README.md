@@ -89,9 +89,9 @@ Para adicionar um cliente, copie um bloco existente e ajuste nome, cor e `positi
 
 ## Pendências de conteúdo
 
-- [ ] Número de WhatsApp comercial
-- [ ] E-mail comercial
-- [ ] Links das redes sociais
+- [x] Número de WhatsApp comercial
+- [] E-mail comercial
+- [] Links das redes sociais
 - [ ] Domínio definitivo
 - [ ] Fotografias reais (opcional): os segmentos usam cenas ilustradas; fotos profissionais podem ser adicionadas em `public/images/segments/`
 - [ ] Logomarca em versão para fundo claro, se houver (o site usa apenas fundos escuros para a logo)
